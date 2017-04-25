@@ -9,12 +9,12 @@
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
 use think\Route;
-Route::resource('common','adlog/Common');
-Route::resource('index','adlog/Index');
-Route::resource('blog','adlog/Blog');
-// Route::resource('common','admin/Common');
-// Route::resource('user','admin/User');
-// Route::resource('node','admin/Node');
+// Route::resource('common','adlog/Common');
+// Route::resource('index','adlog/Index');
+// Route::resource('blog','adlog/Blog');
+Route::resource('common','admin/Common');
+Route::resource('user','admin/User');
+Route::resource('login','admin/Login');
 return [
     '__pattern__' => [
         'name' => '\w+',

@@ -15,14 +15,17 @@ class Common extends Controller
      */
     function _initialize()
     {
-       // if (!session("uid")) {
-       //   return $this->redirect("Login/index"); 
-       // } 
        $this->module = Request::instance()->module(); 
        $this->controller = Request::instance()->controller(); 
        $this->action = Request::instance()->action();
-       $this->pk = Db::getTableInfo($this->controller,'pk');
+       if (empty(Db::query("SHOW TABLES LIKE '".$this->controller."'"))) {
+            $this->pk = Db::getTableInfo($this->controller,'pk');
+            echo $this->pk;
+       }
        session('last_url',Request::instance()->url());
+       if (!session("uid")) {
+         return $this->redirect("Login/index"); 
+        }
     }
 
     /**
@@ -33,6 +36,7 @@ class Common extends Controller
     public function index()
     {
         $data = model($this->controller)->select();
+        echo $data;
         $this->assign('data',$data);
         return $this->fetch();
     }
